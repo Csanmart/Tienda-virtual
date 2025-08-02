@@ -22,16 +22,31 @@
                 </tr>
             </thead>
         </table>
-        <div class="row">
+        <div class="row m-5">
             <div class="col-4">
-                <form action="submit" class="">
+                <form action="submit" class="border p-5 shadow p-3 mb-5 bg-body rounded">
                     <h3>Subir Productos</h3>
-
-
                     <!--Imagen-->
+                    <div class="mb-3">
+                        <label for="img" class="form-label">Coloque una imagen: </label>
+                        <input type="file" name="imagen" id="imagen" class="form-control">
+                    </div>
                     <!--Nombre-->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre: </label>
+                        <input type="text" name="nombre" id="nombre" class="form-control">
+                    </div>
                     <!--Precio-->
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio: </label>
+                        <input type="number" id="precio" class="form-control">
+                    </div>
                     <!--cantidad-->
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad: </label>
+                        <input type="number" name="stock" id="cantidad" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
                 </form>
             </div>
         </div>
