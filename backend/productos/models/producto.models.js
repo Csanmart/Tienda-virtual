@@ -1,5 +1,5 @@
 const sequelize = require('../config/config');
-const {DataType, DataTypes} = require('sequelize');
+const {DataTypes} = require('sequelize');
 
 
 const producto = sequelize.define('productos', {
@@ -8,6 +8,34 @@ const producto = sequelize.define('productos', {
         autoIncrement: true
     },
     img: {
-        type: DataTypes.BLOB
-    }
-})
+        type: DataTypes.BLOB,
+        allowNull: false
+    },
+    name:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    precio:{
+        type: DataTypes.DECIMAL,
+        allowNull: true
+    },
+    cantidad: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    estado:{
+        type: DataTypes.ENUM('Disponible', 'Vendido'), 
+        defaultValue: 'disponible',
+        allowNull: false,
+    },
+    oferta:{
+        type: DataTypes.ENUM('Donacion', 'Venta'),
+        defaultValue: 'Donacion'
+    },
+},
+{   
+    tableName: 'productos',
+    timestamps: true
+});
+
+module.exports = producto;
