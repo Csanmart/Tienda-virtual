@@ -5,37 +5,40 @@ const {DataTypes} = require('sequelize');
 const producto = sequelize.define('productos', {
     id:{
         type: DataTypes.INTEGER,
-        autoIncrement: true
+        autoIncrement: true,
+        primaryKey: true
     },
-    img: {
-        type: DataTypes.BLOB,
+    imagen: {
+        type: DataTypes.BLOB('long'),
         allowNull: false
     },
-    name:{
-        type: DataTypes.STRING,
+    nombre:{
+        type: DataTypes.STRING(255),
         allowNull: false,
     },
     precio:{
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: true
+    },
+    descripcion:{
+        type: DataTypes.TEXT,
+        allowNull: false
     },
     cantidad: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
     },
     estado:{
         type: DataTypes.ENUM('Disponible', 'Vendido'), 
-        defaultValue: 'disponible',
+        defaultValue: 'Disponible',
         allowNull: false,
-    },
-    oferta:{
-        type: DataTypes.ENUM('Donacion', 'Venta'),
-        defaultValue: 'Donacion'
-    },
+    }
 },
 {   
     tableName: 'productos',
-    timestamps: true
+    timestamps: false
 });
 
 module.exports = producto;
+
+

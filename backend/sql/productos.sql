@@ -20,3 +20,9 @@ CREATE TABLE productos (
     tipo_oferta ENUM('Donacion', 'Venta'),
     fecha_publicacion DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+
+USE productos
+
+ALTER TABLE productos
+DROP COLUMN fecha_publicacion
