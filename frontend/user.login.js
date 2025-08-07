@@ -9,6 +9,12 @@ form.addEventListener('submit', function(event){
     
     const email = document.getElementById('email');
     const password = document.getElementById('password');
+
+
+    if(!email.value|| !password.value){
+        alert('Los campos no pueden estar vacios...')
+        return
+    }
     
     const api = 'http://localhost:3000/api/login/';
 
@@ -25,7 +31,7 @@ form.addEventListener('submit', function(event){
         console.log(response)
         try{
             if(response){
-                window.location.href = 'Tabla.datos.html'
+                window.location.href = 'cliente.html'
             }
         }catch(err){
             console.log('Error iniciando sesion', err)

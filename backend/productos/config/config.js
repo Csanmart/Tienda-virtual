@@ -9,7 +9,7 @@ var sequelize = new Sequelize('productos', 'root', '', {
 async function connect() {
     try{
         await sequelize.authenticate()
-        console.log(sequelize, "Conectado a la base de datos");        
+        console.log("Conectado a la base de datos");        
     }catch(error){
         console.log('Error conectandose a la base de datos....');
     }
