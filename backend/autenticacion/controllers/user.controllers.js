@@ -27,6 +27,9 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+  if(!email || !password){
+    res.status(500).json({message:'Los campos no pueden estar vacios'})
+  }
   try {
     //Validaciones
     const validEmail = await userModels.findOne({ where: { email } });

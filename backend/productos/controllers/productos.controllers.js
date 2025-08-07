@@ -7,9 +7,8 @@ exports.crearProducto = async (req, res)=>{
         res.status(500).json({message:"Error los campos deben ser obligatorios"});
     }
     try{
-        var productos = productoModels.create(req.body);
+        var productos = await productoModels.create(req.body);
         res.status(201).json({message:'Producto creado con exito...', productos});
-        console.log(productos)
     }catch(error){
         res.status(404).json({message:"Error creando producto..."});
     };
@@ -18,7 +17,7 @@ exports.crearProducto = async (req, res)=>{
 
 exports.getAllProductos = async (req, res)=>{
     try{
-        var productos = productoModels.findAll();
+        var productos = await productoModels.findAll();
         res.status(200).json(productos);
     }catch(error){
         res.status(500).json({message:"Error tomando los datos..."});
@@ -29,7 +28,7 @@ exports.getAllProductos = async (req, res)=>{
 exports.getProductoById = async (req, res)=>{
     const {id} = req.params;
     try{
-        var productos = productoModels.findByPk(id);
+        var productos = await productoModels.findByPk(id);
         res.status(200).json(productos);
     }catch(error){
         res.status(500).json({message:"Error tomando los datos..."});

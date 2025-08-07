@@ -4,7 +4,7 @@ const productosController = require('../controllers/productos.controllers');
 
 
 //Ruta de get
-router.get('/listaProductos', productosController.getAllProductos);
+router.get('/productos', productosController.getAllProductos);
 
 //Ruta de get for id
 router.get('/listProductosPor/:id', productosController.getProductoById);
