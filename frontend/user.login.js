@@ -9,6 +9,7 @@ form.addEventListener('submit', function(event){
     
     const email = document.getElementById('email');
     const password = document.getElementById('password');
+    const admin  = document.getElementById('admin')
 
 
     if(!email.value|| !password.value){
@@ -23,14 +24,16 @@ form.addEventListener('submit', function(event){
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             email: email.value,
-            password: password.value
+            password: password.value,
+            admin:admin ? admin.value: null
         })
     })
     .then(response => {
-        
         console.log(response)
         try{
-            if(response){
+            if(response.admin){
+                window.location.href = 'Tabla.datos.html'
+            }else{
                 window.location.href = 'cliente.html'
             }
         }catch(err){
@@ -41,6 +44,4 @@ form.addEventListener('submit', function(event){
         console.error('Error:' ,error);
         mensajeAlerta.innerHTML  = '<span class="text-danger">Error con la base de datos</span>'
     })
-
-    
 });

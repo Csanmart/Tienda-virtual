@@ -26,3 +26,9 @@ USE productos
 
 ALTER TABLE productos
 DROP COLUMN fecha_publicacion
+
+
+
+CREATE TABLE ofertas(
+    
+)

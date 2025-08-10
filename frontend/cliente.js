@@ -2,6 +2,9 @@ const tarjeta = document.getElementById('tarjeta');
 const apiProductos = 'http://localhost:3000/productos/productos'
 
 
+{}
+
+
 fetch(apiProductos, {method:'GET'})
 .then(response => {
     if(!response.ok){
@@ -23,6 +26,7 @@ fetch(apiProductos, {method:'GET'})
             <div class="mt-auto">
               <p class="fw-bold text-success">$${producto.precio}</p>
               <button class="btn btn-primary w-100">Comprar</button>
+              <button class"btn btn-info w-100" onclick="">Ver mas</button>
             </div>
           </div>
         </div>

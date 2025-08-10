@@ -7,7 +7,7 @@ const productosController = require('../controllers/productos.controllers');
 router.get('/productos', productosController.getAllProductos);
 
 //Ruta de get for id
-router.get('/listProductosPor/:id', productosController.getProductoById);
+router.get('/listaProductosPor/:id', productosController.getProductoById);
 
 //Ruta para crear
 router.post('/crearProducto', productosController.crearProducto);
