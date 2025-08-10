@@ -1,10 +1,10 @@
-const { jsx } = require("react/jsx-runtime");
-
 //Lleva formulario para editar
 function llevarEditar() {
-  window.location.href = "editar.html";
+  window.location.href = "usuarios/editar.html";
 }
 
+
+console.log(llevarEditar)
 //Formulario para editar los datos.
 
 const form = document.getElementById("miForm");

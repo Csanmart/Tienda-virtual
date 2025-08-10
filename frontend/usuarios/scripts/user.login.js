@@ -32,9 +32,9 @@ form.addEventListener('submit', function(event){
         console.log(response)
         try{
             if(response.admin){
-                window.location.href = 'Tabla.datos.html'
+                window.location.href = 'admin/Tabla.Datos.html'
             }else{
-                window.location.href = 'cliente.html'
+                window.location.href = 'usuarios/cliente.html'
             }
         }catch(err){
             console.log('Error iniciando sesion', err)

@@ -116,7 +116,8 @@ form.addEventListener('submit', function(event){
             console.log('Error subiendo productos', error)
         }
     })
-})
+});
+
 
 
 
