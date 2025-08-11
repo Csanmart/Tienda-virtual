@@ -1,5 +1,7 @@
 const userModels = require("../models/user.models");
-const bcrypt = require("bcrypt");
+
+const jwt = require('jsonwebtoken');
+const { where } = require("sequelize");
 
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
@@ -31,19 +33,26 @@ exports.login = async (req, res) => {
     res.status(500).json({message:'Los campos no pueden estar vacios'})
   }
   try {
-    //Validaciones
-    const validEmail = await userModels.findOne({ where: { email } });
-    if (!validEmail)
-      return res
-        .status(404)
-        .json({ message: "No se encuentra este correo..." });
+    const User = await userModels.findOne({where:{email}});
+    if(!User) return res.status(404).json({message:"Usuario no encontrado..."})
 
     //Validar el password
-    const validPassword = await userModels.findOne({ where: { password } });
-    if (!validPassword)
-      return res.status(404).json({ message: "Error con el password" });
+    if(password !== User.password){
+      return res.status(404).json({message:'No coinciden las contrasenas'});
+    }
 
-    res.status(200).json({ message: "Bienvenido a la apliacion..." });
+    const crearToken = jwt.sign(
+      {id:User.id, isAdmin: User.admin},"SSD", {expiresIn: "2h"}
+    );
+
+    res.status(200).json({
+      crearToken,user:{
+        id: User.id,
+        name: User.name,
+        email: User.email,
+        isAdmin: User.admin == 1
+      }
+    });
   } catch (err) {
     res.status(500).json({ message: "Error iniciando sesion...", err });
   }
