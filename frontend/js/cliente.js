@@ -1,9 +1,19 @@
 const tarjeta = document.getElementById('tarjeta');
 const apiProductos = 'http://localhost:3000/productos/productos'
+const strong = document.getElementById('nombre')
+const api = 'http://localhost:3000/api/usuarios';
 
 
-{}
 
+
+
+fetch(api, {method: 'GET'})
+.then(response => response.json())
+.then(data => {
+  data.forEach(data =>{
+    strong.innerHTML = `${data.name}`
+  })
+})
 
 fetch(apiProductos, {method:'GET'})
 .then(response => {
@@ -25,9 +35,9 @@ fetch(apiProductos, {method:'GET'})
             <p class="card-text text-muted">${producto.descripcion}</p>
             <div class="mt-auto">
               <p class="fw-bold text-success">$${producto.precio}</p>
-              <button class="btn btn-primary w-100">Comprar</button>
-              <button class"btn btn-info w-100" onclick="">Ver mas</button>
+              <button class="btn btn-primary w-100 mb-3">Comprar</button>
             </div>
+            <button class"btn btn-primary mb-3"><a>Ver mas</a></button>
           </div>
         </div>
         `;
