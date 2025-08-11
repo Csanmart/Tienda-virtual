@@ -1,0 +1,110 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Configuracion del boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="tabla.datos.css">
+    <title>Administracion</title>
+</head>
+<body>
+    <div class="container">
+
+    <h1 class="text-center m-5">Lista de usuarios registrados</h1>
+    
+    <!-- Tabla de usuarios -->
+    <table id="tableUsers" class="table">
+        <thead class="table-primary">
+            <tr>
+                <th>id</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Admin</th>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- Fila que contiene formulario y tabla de productos lado a lado -->
+    <div class="row m-5">
+
+        <!-- Formulario -->
+        <div class="col-md-4">
+            <form action="submit" class="border p-4 shadow mb-5 bg-body rounded" id="miForm">
+                <h3>Subir Productos</h3>
+                
+                <!-- Imagen -->
+                <div class="mb-3">
+                    <label for="img" class="form-label">Coloque una imagen:</label>
+                    <input type="file" name="imagen" id="imagen" class="form-control">
+                </div>
+                
+                <!-- Nombre -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control">
+                </div>
+                
+                <!-- Precio -->
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Precio:</label>
+                    <input type="number" id="precio" class="form-control">
+                </div>
+                
+                <!-- Cantidad -->
+                <div class="mb-3">
+                    <label for="cantidad" class="form-label">Cantidad:</label>
+                    <input type="number" name="cantidad" id="cantidad" class="form-control">
+                </div>
+
+                
+                <!--Descripcion-->
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripcion del producto: </label>
+                    <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+                </div>
+                <!--Estado-->
+                <div class="mb-3">
+                    <label for="estado" class="form-label">Estado</label>
+                    <select name="estado" id="estado" class="form-select">
+                        <option value="Disponible">Disponible</option>
+                        <option value="Agotados">Agotados</option>
+                    </select>
+                    
+                    
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Agregar</button>
+                
+            </form>
+        </div>
+
+        <!-- Tabla de productos -->
+        <div class="col-md-8">
+            <h3 class="mb-3 text-center">Lista de productos</h3>
+            <table class="table" id="tableProductos">
+                <thead class="table-primary">
+                    <tr>
+                        <th>id</th>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Descripcion</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Botón cerrar sesión -->
+    <div class="m-3">
+        <button class="btn btn-danger p-2 mt-4" id="cerrar" type="reset">Cerrar sesión</button>
+    </div>
+
+</div>
+    <!--Configuracion del javascript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="/frontend/admin/scripts/User.Autentication.js"></script>
+</body>
+</html>
