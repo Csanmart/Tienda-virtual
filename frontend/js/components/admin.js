@@ -1,7 +1,7 @@
 
 var cerrar = document.getElementById('cerrar');
 
-//Conexion a la api de autenticacion....
+//Conexion a la api de autenticacion....    
 var table = document.getElementById('tableUsers');
 var isAdmin = document.getElementById('isAdmin');
 
@@ -11,7 +11,7 @@ const api = 'http://localhost:3000/api/usuarios';
 
 cerrar.addEventListener('click', function(event){
     if(cerrar){
-        window.location.href = 'login.form.html'
+        window.location.href = 'login.html'
     }
 })
 
