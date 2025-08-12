@@ -1,6 +1,6 @@
 //Inicio de sesion
 
-const form = document.getElementById('miForm');
+const form = document.getElementById('miFormLogin');
 
 form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -27,7 +27,7 @@ form.addEventListener('submit', function(event) {
 
         if (data.user && data.user.isAdmin) {
             // Si es admin
-            window.location.href = 'Tabla.datos.html';
+            window.location.href = 'admin.html';
         } else if (data.user) {
             // Si es usuario normal
             window.location.href = 'cliente.html';
