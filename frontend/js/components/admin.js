@@ -63,11 +63,15 @@ fetch(apiProductos, { method: 'GET' })
         const row = document.createElement('tr')
         row.innerHTML = `
         <td>${producto.id}</td>
-        <td><img src="${producto.imagen}" alt="Imagen del producto" width="50"></td>
+        <td><img src="frontend/img/${producto.imagen}" alt="Imagen del producto" width="50"></td>
         <td>${producto.nombre}</td>
         <td>${producto.precio}</td>
         <td>${producto.descripcion}</td>
         <td>${producto.cantidad}</td>
+        <td>
+        <a class="btn btn-success mb-2">Editar</a>
+        <a class="btn btn-danger">Eliminar</a>
+        </td>
     `;
     tbody.appendChild(row)
     })

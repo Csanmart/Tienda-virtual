@@ -29,7 +29,7 @@ fetch(apiProductos, { method: "GET" })
 
       card.innerHTML = `
         <div class="card h-100 shadow-sm">
-          <img src="${producto.imagen}" class="card-img-top" alt="${
+          <img src="frontend/img/${producto.imagen}" class="card-img-top" alt="${
         producto.nombre
       }" style="object-fit: cover; height: 200px;">
           <div class="card-body d-flex flex-column">

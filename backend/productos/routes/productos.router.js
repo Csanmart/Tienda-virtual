@@ -12,5 +12,11 @@ router.get('/listaProductosPor/:id', productosController.getProductoById);
 //Ruta para crear
 router.post('/crearProducto', productosController.crearProducto);
 
+//Ruta editar
+router.put('/editar/:id', productosController.updateProducto);
+
+//Eliminar producto
+router.delete('/eliminar/:id', productosController.deleteProducto);
+
 
 module.exports = router
