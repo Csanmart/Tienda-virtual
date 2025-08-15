@@ -1,15 +1,18 @@
-const strongName = document.getElementById("nombre");
-const strong = document.getElementById("email");
-const api = "http://localhost:3000/api/usuarios";
+// Verificar sesión al cargar
 
-fetch(api, { method: "GET" })
-  .then((response) => response.json())
-  .then((data) => {
-    data.forEach((data) => {
-      strongName.innerHTML = `${data.name}`;
-      strong.innerHTML = `${data.email}`;
-    });
-  });
+document.addEventListener('DOMContentLoaded', () => {
+    const usuario = JSON.parse(sessionStorage.getItem('usuario'));
+
+    if (!usuario) {
+        // Si no hay sesión, redirige al login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Mostrar nombre y correo del usuario en la página
+    document.getElementById("nombre").textContent = usuario.name;
+    document.getElementById("email").textContent = usuario.email;
+});
 
 //Tarjeta de productos
 const tarjeta = document.getElementById("tarjeta");
@@ -37,8 +40,8 @@ fetch(apiProductos, { method: "GET" })
             <p class="card-text text-muted">${producto.descripcion}</p>
             <div class="mt-auto">
               <p class="fw-bold text-success">$${producto.precio}</p>
-              <button class="btn btn-primary w-100 mb-3">Comprar</button>
-              <button class= "btn btn-secundary mb-3 w-100" onclick="verMas(${producto.id})"><a>Ver mas</a></button>
+              <button class="btn btn-primary w-100 mb-3">Agregar al carrito</button>
+              <button class= "btn btn-secondary mb-3 w-100" onclick="verMas(${producto.id})"><a>Ver mas</a></button>
             </div>
           </div>
         </div>
@@ -51,15 +54,22 @@ fetch(apiProductos, { method: "GET" })
   });
 
 //Mirar el productos por id
-
 function verMas(id){
   window.location.href = `ver-mas.html?id=${id}`
 };
 
+
+//Redirecionar
+function editar(){
+  window.location.href = 'editar-perfil.html'
+}
+
 const cerrar = document.getElementById('cerrar')
 
 cerrar.addEventListener('click', function(event){
-    if(cerrar){
+  sessionStorage.clear();  
+  if(cerrar){
         window.location.href = 'login.html'
     }
-})
+});
+

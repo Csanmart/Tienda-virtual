@@ -21,16 +21,21 @@ form.addEventListener('submit', function(event) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
     })
-    .then(res => res.json()) // ⬅ Convertimos la respuesta a JSON
+    .then(res => res.json())
     .then(data => {
         console.log("Respuesta del servidor:", data);
 
-        if (data.user && data.user.isAdmin) {
-            // Si es admin
-            window.location.href = 'admin.html';
-        } else if (data.user) {
-            // Si es usuario normal
-            window.location.href = 'cliente.html';
+        if (data.user) {
+            // Guardar datos en sessionStorage
+            sessionStorage.setItem('usuario', JSON.stringify(data.user));
+            sessionStorage.setItem('token', data.token);
+
+            // Redirigir según el rol
+            if (data.user.isAdmin) {
+                window.location.href = 'admin.html';
+            } else {
+                window.location.href = 'cliente.html';
+            }
         } else {
             mensajeAlerta.innerHTML = '<span class="text-danger">Credenciales incorrectas</span>';
         }
@@ -40,6 +45,7 @@ form.addEventListener('submit', function(event) {
         mensajeAlerta.innerHTML = '<span class="text-danger">Error con la base de datos</span>';
     });
 });
+
 
 
 

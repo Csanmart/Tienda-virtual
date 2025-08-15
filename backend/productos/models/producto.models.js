@@ -29,7 +29,7 @@ const producto = sequelize.define('productos', {
         allowNull: false,
     },
     estado:{
-        type: DataTypes.ENUM('Disponible', 'Vendido'), 
+        type: DataTypes.ENUM('Disponible', 'Agotado'), 
         defaultValue: 'Disponible',
         allowNull: false,
     }
