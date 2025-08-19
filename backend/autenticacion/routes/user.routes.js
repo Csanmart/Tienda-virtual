@@ -13,7 +13,7 @@ routes.post('/login', userControllers.login);
 routes.get('/usuarios', userControllers.allUsers);
 
 //Update
-routes.put('/update/:id', userControllers.update);
+routes.put('/actualizar/:id', userControllers.update);
 
 //Exportamos el modulo
 module.exports = routes;

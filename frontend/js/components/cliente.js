@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mostrar nombre y correo del usuario en la página
     document.getElementById("nombre").textContent = usuario.name;
     document.getElementById("email").textContent = usuario.email;
+    
+    window.userId = usuario.userId
 });
 
 //Tarjeta de productos
@@ -53,16 +55,96 @@ fetch(apiProductos, { method: "GET" })
     console.error("Error obteniendo los datos..", error);
   });
 
+
+//Editar el usuario
+// Botón editar
+const editarBtn = document.getElementById('editar');
+editarBtn.addEventListener('click', () => {
+  const usuario = JSON.parse(sessionStorage.getItem('usuario'));
+  const formulario = document.getElementById('formulario');
+
+  // Pintar formulario dinámicamente
+  formulario.innerHTML = `
+    <div class="card shadow-sm p-4">
+      <h4 class="mb-3">Editar perfil</h4>
+      <form id="formEditar">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" value="${usuario.name}" required>
+        </div>
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo</label>
+          <input type="email" class="form-control" id="correo" value="${usuario.email}" required>
+        </div>
+        <div class="mb-3">
+          <label for="contrasena" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="contrasena" placeholder="Nueva contraseña">
+        </div>
+        <button type="submit" class="btn btn-success w-100">Guardar cambios</button>
+      </form>
+    </div>
+  `;
+
+  // Capturar el formulario después de pintarlo
+  const formEditar = document.getElementById('formEditar');
+  formEditar.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById('nombre').value;
+    const email = document.getElementById('correo').value;
+    const password = document.getElementById('contrasena').value;
+
+    const apiEditar = `http://localhost:3000/api/actualizar/${window.userId}`;
+
+    fetch(apiEditar, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password })
+    })
+    .then(response => {
+      if (!response.ok) throw new Error(`Error en el status ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      // Mensaje bonito con SweetAlert
+      Swal.fire({
+        icon: 'success',
+        title: 'Perfil actualizado',
+        text: 'Tus datos fueron guardados correctamente ✅',
+        confirmButtonColor: '#3085d6'
+      });
+
+      // Actualizar datos en sessionStorage
+      sessionStorage.setItem('usuario', JSON.stringify(data, {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        password: data.password
+      }));
+
+      // Refrescar datos en la tarjeta
+      document.getElementById("nombre").textContent = data.usuario.name;
+      document.getElementById("email").textContent = data.usuario.email;
+
+      // Limpiar el formulario
+      formulario.innerHTML = '';
+    })
+    .catch(error => {
+      console.error("Error actualizando usuario:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema al actualizar tu perfil ❌'
+      });
+    });
+  });
+});
+
+
 //Mirar el productos por id
 function verMas(id){
   window.location.href = `ver-mas.html?id=${id}`
 };
-
-
-//Redirecionar
-function editar(){
-  window.location.href = 'editar-perfil.html'
-}
 
 const cerrar = document.getElementById('cerrar')
 
@@ -72,4 +154,3 @@ cerrar.addEventListener('click', function(event){
         window.location.href = 'login.html'
     }
 });
-
